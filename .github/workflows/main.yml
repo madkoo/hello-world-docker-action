@@ -1,1 +1,17 @@
 
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job that says hello
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: madkoo/hello-world-docker-action@v1
+        with:
+          who-to-greet: 'mona the octocat'
+          # use hte output from the 'hello' step
+      - name: Get output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
+
